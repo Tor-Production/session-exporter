@@ -1,0 +1,7 @@
+interface:
+  display_name: "Session Exporter"
+  short_description: "Export complete sessions to Markdown"
+  brand_color: "#635BFF"
+  default_prompt: "Use $session-exporter to export this entire conversation to Markdown."
+policy:
+  allow_implicit_invocation: true

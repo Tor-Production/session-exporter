@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Session Exporter creates complete, privacy-conscious Markdown handoffs from current ChatGPT and Codex conversations.">
+  <title>Session Exporter — Tor Production</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav class="shell" aria-label="Primary navigation">
+      <a class="brand" href="./"><img src="logo.svg" alt=""><span>Session Exporter</span></a>
+      <div class="nav-links">
+        <a href="#install">Install</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="support.html">Support</a>
+        <a href="https://github.com/Tor-Production/session-exporter">GitHub</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="shell hero">
+      <div>
+        <div class="eyebrow">A Tor Production plugin</div>
+        <h1>Take the whole session with you.</h1>
+        <p class="lede">Export the complete accessible conversation, project state, decisions, commands, failures, and verification evidence into one structured Markdown handoff.</p>
+        <div class="actions">
+          <a class="button primary" href="#install">Install from GitHub</a>
+          <a class="button" href="https://github.com/Tor-Production/session-exporter">View source</a>
+        </div>
+        <div class="status">Skills-only · no server · no telemetry</div>
+      </div>
+      <img class="hero-mark" src="logo.svg" alt="Session Exporter logo">
+    </section>
+
+    <section class="shell" aria-labelledby="principles-heading">
+      <div class="eyebrow">Built for trustworthy handoffs</div>
+      <h2 id="principles-heading">Fidelity without hidden data</h2>
+      <div class="grid">
+        <article class="card"><h3>Complete chronology</h3><p>Preserves accessible user and agent messages, visible operational output, errors, corrections, and abandoned approaches in order.</p></article>
+        <article class="card"><h3>Explicit uncertainty</h3><p>Marks inaccessible ranges and unknown metadata instead of silently omitting or inventing them.</p></article>
+        <article class="card"><h3>Local by design</h3><p>Uses no MCP server or remote account. It does not upload the export and redacts secret values.</p></article>
+      </div>
+    </section>
+
+    <section class="shell content-panel" id="install" aria-labelledby="install-heading">
+      <div class="eyebrow">Git marketplace</div>
+      <h2 id="install-heading">Install in Codex</h2>
+      <pre><code>codex plugin marketplace add Tor-Production/session-exporter --ref main
+codex plugin add session-exporter@tor-production</code></pre>
+      <p>Start a new task after installation, then invoke <code>$session-exporter</code> or ask to export the complete current session.</p>
+      <p class="muted">The universal Plugins Directory listing is subject to OpenAI review and approval. The Git marketplace package is independently installable from this public repository.</p>
+    </section>
+
+    <section class="shell content-panel" aria-labelledby="output-heading">
+      <div class="eyebrow">The artifact</div>
+      <h2 id="output-heading">One file, with evidence</h2>
+      <p>The default <code>session_export.md</code> includes metadata, a compact executive summary, current state, decisions, Git and deployment state, important files and commands, the complete accessible transcript, a material-action timeline, open questions, handoff instructions, and an integrity report.</p>
+      <p>Hidden system instructions and private chain-of-thought are never exported. Known omissions and redactions are disclosed.</p>
+    </section>
+  </main>
+  <footer><div class="shell">© 2026 Tor Production · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="support.html">Support</a></div></footer>
+</body>
+</html>

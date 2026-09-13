@@ -1,0 +1,43 @@
+{
+  "name": "session-exporter",
+  "version": "0.1.0",
+  "description": "Export the complete accessible current conversation and workspace state to a structured Markdown handoff.",
+  "author": {
+    "name": "Tor Production",
+    "url": "https://github.com/Tor-Production"
+  },
+  "homepage": "https://tor-production.github.io/session-exporter/",
+  "repository": "https://github.com/Tor-Production/session-exporter",
+  "license": "MIT",
+  "keywords": [
+    "session-export",
+    "conversation-export",
+    "handoff",
+    "audit",
+    "codex",
+    "chatgpt"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Session Exporter",
+    "shortDescription": "Export a complete conversation to a Markdown handoff.",
+    "longDescription": "Create a faithful, chronological Markdown export of the accessible current conversation, workspace metadata, decisions, commands, and end state for handoff or audit.",
+    "developerName": "Tor Production",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://tor-production.github.io/session-exporter/",
+    "privacyPolicyURL": "https://tor-production.github.io/session-exporter/privacy.html",
+    "termsOfServiceURL": "https://tor-production.github.io/session-exporter/terms.html",
+    "defaultPrompt": [
+      "Export this entire conversation to session_export.md.",
+      "Create a complete Markdown handoff for this task.",
+      "Save this session with Git state, decisions, and every accessible message."
+    ],
+    "brandColor": "#635BFF",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png"
+  }
+}

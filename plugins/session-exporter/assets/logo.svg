@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Session Exporter</title>
+  <desc id="desc">A document inside a conversation bubble with a downward export arrow.</desc>
+  <defs>
+    <linearGradient id="background" x1="72" y1="56" x2="448" y2="464" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#171B3A"/>
+      <stop offset="1" stop-color="#090D1C"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="142" y1="112" x2="386" y2="406" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8B7CFF"/>
+      <stop offset="0.52" stop-color="#635BFF"/>
+      <stop offset="1" stop-color="#20C8FF"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#03050D" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#background)"/>
+  <circle cx="402" cy="112" r="54" fill="#635BFF" opacity="0.14"/>
+  <circle cx="104" cy="404" r="70" fill="#20C8FF" opacity="0.10"/>
+  <path d="M112 126c0-30.9 25.1-56 56-56h176c30.9 0 56 25.1 56 56v184c0 30.9-25.1 56-56 56h-96l-66.4 58.8c-12.9 11.4-33.2 2.3-33.2-14.9V366H168c-30.9 0-56-25.1-56-56V126Z" fill="url(#accent)" filter="url(#shadow)"/>
+  <path d="M186 124h92l50 50v84c0 13.3-10.7 24-24 24H186c-13.3 0-24-10.7-24-24V148c0-13.3 10.7-24 24-24Z" fill="#FFFFFF"/>
+  <path d="M278 124v38c0 8.8 7.2 16 16 16h34" fill="#DCD9FF"/>
+  <path d="M278 124l50 50h-34c-8.8 0-16-7.2-16-16v-34Z" fill="#DCD9FF"/>
+  <path d="M194 190h96M194 220h96M194 250h58" fill="none" stroke="#34305F" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="330" cy="326" r="72" fill="#0E1329" stroke="#FFFFFF" stroke-width="10"/>
+  <path d="M330 286v72m0 0-28-28m28 28 28-28M298 378h64" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

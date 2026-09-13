@@ -1,0 +1,20 @@
+{
+  "name": "tor-production",
+  "interface": {
+    "displayName": "Tor Production"
+  },
+  "plugins": [
+    {
+      "name": "session-exporter",
+      "source": {
+        "source": "local",
+        "path": "./plugins/session-exporter"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
