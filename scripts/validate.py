@@ -3,9 +3,9 @@
 
 from __future__ import annotations
 
-import json
 import re
 import sys
+import json
 from pathlib import Path
 from typing import Any
 
@@ -96,6 +96,7 @@ def main() -> int:
 
     require(portable.get("$schema") == "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json", "portable manifest: wrong or missing schema", errors)
     require(portable.get("repository") == "https://github.com/Tor-Production/session-exporter", "portable manifest: wrong repository URL", errors)
+    require(portable.get("version") == compatibility.get("version"), "portable and compatibility manifests use different versions", errors)
     require(compatibility.get("skills") == "./skills/", "compatibility manifest: skills path must be ./skills/", errors)
 
     portable_interface = portable.get("extensions", {}).get("com.openai", {}).get("interface", {}) if isinstance(portable.get("extensions"), dict) else {}
@@ -137,6 +138,23 @@ def main() -> int:
         require(skill_text.startswith("---\nname: session-exporter\n"), "SKILL.md: invalid frontmatter start", errors)
         require("description:" in skill_text.split("---", 2)[1], "SKILL.md: missing description", errors)
         require("references/export-spec.md" in skill_text, "SKILL.md: export reference is not linked", errors)
+        require("Do not create empty headings" in skill_text, "SKILL.md: adaptive metadata boundary is missing", errors)
+
+    if reference_path.is_file():
+        reference_text = reference_path.read_text(encoding="utf-8")
+        for phrase in (
+            "The export has four required high-level parts:",
+            "Omit irrelevant information entirely.",
+            "Do not use placeholder metadata",
+            "Never pause solely to ask the user to choose an export language.",
+        ):
+            require(phrase in reference_text, f"export specification: missing adaptive rule: {phrase}", errors)
+
+    test_cases_path = ROOT / "submission" / "test-cases.md"
+    if test_cases_path.is_file():
+        test_cases = test_cases_path.read_text(encoding="utf-8")
+        require("no irrelevant metadata headings, tables, or placeholder values" in test_cases, "submission tests: non-repository scenario is not adaptive", errors)
+        require("all eleven required sections" not in test_cases, "submission tests: obsolete fixed structure remains", errors)
 
     for relative in (
         "README.md",

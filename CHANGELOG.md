@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1 - 2026-09-14
+
+- Make the export structure adaptive to the actual session.
+- Omit irrelevant metadata and optional sections instead of emitting placeholder fields.
+- Preserve explicit unavailable markers only for known inaccessible transcript content.
+- Default explanatory prose to the request language without asking a language-selection question.
+
 ## 0.1.0 - 2026-09-14
 
 - Initial skills-only Session Exporter plugin.

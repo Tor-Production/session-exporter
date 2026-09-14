@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import shutil
 import zipfile
+import json
 from pathlib import Path
 
 
@@ -12,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PLUGIN = ROOT / "plugins" / "session-exporter"
 SKILL = PLUGIN / "skills" / "session-exporter"
 DIST = ROOT / "dist"
-VERSION = "0.1.0"
+VERSION = json.loads((PLUGIN / "plugin.json").read_text(encoding="utf-8"))["version"]
 FIXED_TIMESTAMP = (2026, 9, 14, 0, 0, 0)
 
 

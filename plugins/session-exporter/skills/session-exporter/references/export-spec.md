@@ -1,6 +1,6 @@
-# Session export specification
+# Adaptive session export specification
 
-Use this specification whenever the skill creates an export. Completeness and fidelity take priority over brevity, subject to the data and safety boundaries in `SKILL.md`.
+Use this specification whenever the skill creates an export. The artifact must be a faithful record of the accessible session, shaped by what actually happened in that session. Completeness and fidelity take priority over brevity, subject to the data and safety boundaries in `SKILL.md`.
 
 ## Core requirement
 
@@ -12,11 +12,11 @@ Include every accessible interaction in chronological order:
 - every visible assistant or agent response;
 - every visible agent status or progress update;
 - commands proposed or executed;
-- important visible tool calls and associated outputs;
+- relevant visible tool calls and associated outputs;
 - errors, warnings, and test results;
-- Git, pull request, release, and deployment activity;
-- URLs, decisions, corrections, and rejected or superseded instructions;
-- failed approaches as well as successful ones.
+- decisions, corrections, rejected approaches, and changes in direction;
+- Git, pull request, release, deployment, document, research, or other operational activity when it occurred;
+- URLs and technical or non-technical context that materially affected the conversation.
 
 Do not paraphrase transcript entries, collapse them into bullet summaries, omit apparently repetitive messages, or select only the messages judged important. Preserve original Markdown and code fences when accessible.
 
@@ -26,144 +26,95 @@ If exact content is unavailable, insert this marker at the correct chronological
 
 Never include hidden system or developer instructions, private chain-of-thought, internal policy text, credentials, secret values, or unrelated private data. Acknowledge intentional redactions in the integrity report.
 
-## Required document structure
+## Structure is adaptive, not a questionnaire
 
-# Session Export
+The export has four required high-level parts:
 
-## 1. Export Metadata
+1. Session Context
+2. Executive Summary
+3. COMPLETE CHRONOLOGICAL TRANSCRIPT
+4. Export Integrity Report
 
-Record the following when applicable:
+Everything else is optional. Add an optional section only when it carries established information that meaningfully helps a human or another agent continue, audit, or understand the session.
 
-- Export date and time, including timezone when known
-- AI, agent, and product
-- Project name
-- Repository name and URL
-- Local repository or workspace path
-- Current branch
-- Current HEAD commit SHA
-- Relevant base or default branch
-- Current pull request number and URL
-- Production URL
-- Staging URL
-- Preview or development URLs
-- Relevant API, service, dashboard, and documentation URLs
-- Deployment platform or platforms
-- Relevant runtime, language, and framework versions
-- Current environment
-- Current task, issue, or ticket
-- Related issue and pull request URLs
-- Important external services and integrations
-- Other identifiers needed to continue the work
+Do not create a heading, field, table row, or category solely because it appears in this specification. Do not use placeholder metadata such as `Unknown`, `Not established`, `N/A`, `Not applicable`, `None`, blank values, or empty tables. Omit irrelevant information entirely.
 
-For an unknown field, write exactly:
+For example:
 
-`Unknown / not established in this session`
+- A casual conversation may only need its subject, key preferences, and transcript.
+- A coding session may need repository state, affected files, commands, tests, and deployment information.
+- A writing session may need document names, target audience, tone, source material, and editorial decisions.
+- A research session may need sources, search scope, assumptions, conclusions, and open questions.
+- A troubleshooting session may need environment details, symptoms, attempted fixes, observed results, and remaining failure modes.
+- A planning session may need goals, constraints, priorities, decisions, and next actions without any Git or deployment information.
 
-Never infer a value merely to fill the template.
+The agent may create descriptive field and section names that fit the session. It must not invent values or infer facts without support from the conversation or directly observable in-scope environment.
+
+## 1. Session Context
+
+Create a concise context block that contains only facts that are both established and useful to the next reader.
+
+Choose the fields dynamically. Possible fields include a task or topic, project or repository, relevant URLs, workspace path, branch or commit, issue or pull request, target audience, source material, selected strategy, operating system, runtime, important tools, date/time context, current task, external service, or document being edited.
+
+These are examples, not a checklist. A non-technical chat may have only a subject and scope. A session with no meaningful structured metadata should keep this section very small rather than adding empty technical categories.
+
+Use generated explanatory prose in the language of the user's current request unless the user explicitly asks for another language. Never pause solely to ask the user to choose an export language. Preserve the original language of every transcript message.
 
 ## 2. Executive Summary
 
-Write a compact, information-dense overview of:
+Write a compact, information-dense overview tailored to the session. Include only applicable material, such as:
 
-- what the project is;
-- what the session attempted;
-- what was completed;
-- what remains in progress, failed, or unresolved;
-- important technical decisions and constraints;
-- current repository and deployment state;
-- what the next agent must understand before acting.
+- what the conversation was about;
+- what the user was trying to accomplish;
+- what was completed, remains unresolved, or changed direction;
+- major decisions and constraints;
+- current state and what the next agent needs to understand.
 
-This section is an overview only and must not replace or shorten the transcript.
+Do not force technical categories into a non-technical conversation. This section is only an overview and must not replace or shorten the transcript.
 
-## 3. Current State
+## Optional context sections
 
-Use these subsections:
+Place zero or more optional sections after the Executive Summary and before the transcript. Use only the sections that improve the handoff. Omit empty subsections as well as empty parent sections.
 
-### Completed
+Possible useful sections include:
 
-Only work definitively finished.
+### Current State
 
-### In Progress
+Use when the session produced work with a meaningful end state. Include only applicable details such as completed work, work in progress, next steps, blockers, manual actions, and evidence-backed verification status.
 
-Work started but not finished.
+### Key Decisions and Constraints
 
-### Pending / Next Steps
+Use when decisions, alternatives, user preferences, requirements, or tradeoffs will affect future work. Record the decision, reason, consequence, and whether it is final or provisional when that evidence exists.
 
-Remaining actions in useful order.
+### Repository, Git, or Deployment State
 
-### Blockers
+Use only when repository, Git hosting, pull requests, deployments, environments, migrations, or releases were materially involved. Include only the facts available in the session, such as a repository URL, branch, commit, working tree state, pull request, tag, deployment state, or required configuration names. Never print secret values.
 
-Anything that currently prevents progress.
+### Important Files, Components, or Documents
 
-### Manual Actions Required
+Use only when named files, components, documents, or infrastructure materially matter. Briefly explain why each item matters; do not reproduce entire source files unless their content was part of the conversation.
 
-Anything only the user or another authorized person can perform.
+### Commands and Operational Procedures
 
-### Verification Status
+Use only when the session established commands or procedures another agent should reuse, such as build, test, lint, deployment, rollback, environment setup, or troubleshooting commands. Preserve exact commands when accessible, redacting secret literals only.
 
-Distinguish clearly among:
+### Errors, Failed Attempts, or Rejected Approaches
 
-- implemented;
-- locally tested;
-- remotely tested;
-- staging verified;
-- production verified;
-- not yet verified.
+Use when failed experiments, errors, corrections, or abandoned paths will help prevent repeated work.
 
-Never call something verified without evidence from the session.
+### Sources, URLs, or External Services
 
-## 4. Key Decisions and Constraints
+Use when sources, references, dashboards, APIs, or integrations materially shaped the work. Include only relevant entries.
 
-For each material decision, include when available:
+### Open Questions, Next Steps, or Handoff Instructions
 
-- the decision;
-- its reason or context;
-- alternatives discussed;
-- consequences;
-- whether it is final or provisional.
+Use when actual uncertainty, unfinished work, or an explicit handoff remains. State what the next agent should read, verify, avoid redoing, or do next, based only on session evidence.
 
-Also preserve explicit user preferences and constraints that shaped the work.
-
-## 5. Repository / Git / Deployment State
-
-Capture all available continuation-relevant state:
-
-- repository and remotes;
-- branch and HEAD SHA;
-- working tree state;
-- commits created or pushed;
-- branches created;
-- pull requests created, updated, merged, or closed;
-- tags and releases;
-- deployment, staging, and production state;
-- environment configuration changes and migrations;
-- required secrets or configuration names.
-
-Never print secret values, passwords, API keys, tokens, cookies, private credentials, or equivalent authentication data. Use a descriptive placeholder such as:
-
-`DISCORD_TOKEN - required secret, value intentionally omitted`
-
-## 6. Important Files and Components
-
-List the files, directories, modules, scripts, configuration, documentation, and infrastructure components materially involved. Briefly state why each matters. Do not reproduce entire source files unless their content was explicitly part of the conversation.
-
-## 7. Commands and Operational Procedures
-
-Collect important commands and procedures used or established for:
-
-- build, test, lint, and local development;
-- deployment and rollback;
-- database or migration work;
-- Git and GitHub operations;
-- environment setup.
-
-Preserve exact commands when accessible. If a visible command contained a secret literal, redact only the secret value and disclose that redaction.
-
-## 8. COMPLETE CHRONOLOGICAL TRANSCRIPT
+## 3. COMPLETE CHRONOLOGICAL TRANSCRIPT
 
 This is the most important section. Include the complete accessible conversation from the beginning of the scoped session through the latest interaction represented.
 
-Use this format:
+Use this general structure:
 
 ```markdown
 ## Interaction 001
@@ -178,7 +129,7 @@ Use this format:
 
 ### TOOL / TERMINAL / SYSTEM OUTPUT
 
-<visible output associated with this interaction, when accessible and relevant>
+<visible output associated with this interaction, when accessible and useful>
 
 ---
 ```
@@ -187,66 +138,52 @@ Continue with zero-padded sequential interaction numbers. Omit a role subsection
 
 Transcript rules:
 
-1. Preserve original wording whenever it is accessible.
+1. Preserve original wording and language whenever it is accessible.
 2. Do not summarize a message instead of reproducing it.
 3. Do not silently skip known messages.
 4. Preserve Markdown, prompts, code blocks, commands, and URLs.
 5. Preserve error messages, corrections, contradictions, and abandoned plans.
 6. Preserve messages even when later obsolete.
-7. Label HUMAN, AI / AGENT, and TOOL / TERMINAL / SYSTEM OUTPUT clearly.
+7. Label HUMAN, AI / AGENT, and TOOL / TERMINAL / SYSTEM OUTPUT clearly when appropriate.
 8. Do not merge separate interactions into a synthesized entry.
-9. Place unavailable markers where the missing content belongs.
-10. Include tool output only when visible to the user and relevant to the interaction; never expose hidden implementation traces.
-11. Redact secret values while preserving the fact and context that a secret was present.
+9. Place the unavailable marker where a known missing interaction belongs.
+10. Include visible tool output only when relevant to the interaction; never expose hidden implementation traces.
+11. Redact secret values while preserving their non-sensitive operational context.
 12. Do not reproduce hidden system messages under the `SYSTEM OUTPUT` label; that label is only for visible operational output.
 
-## 9. Timeline of Material Actions
+## Sensitive information
 
-After the raw transcript, provide a concise chronological index of material actions. Include requests, inspections, implementation, commits, pull requests, manual testing, failures, fixes, deployments, and unresolved operational steps. This timeline must not replace the transcript.
+Never print secret values, passwords, API keys, authentication tokens, private credentials, session cookies, private keys, or similar secrets.
 
-## 10. Open Questions / Uncertainties
+If a secret's existence matters to the context, record only its role, for example:
 
-List facts the next agent must not assume, including untested work, unverified URLs, possible external branch changes, unfinished manual steps, and conflicting requirements.
+`DISCORD_TOKEN — required secret; value intentionally omitted`
 
-## 11. Handoff Instructions for the Next AI
-
-Address the next AI or agent directly and state:
-
-- what to read first;
-- what state to assume;
-- what to verify before changing anything;
-- what not to redo unnecessarily;
-- which unresolved work should probably happen next.
-
-Base every instruction on session evidence.
+Do not remove surrounding non-sensitive context unnecessarily.
 
 ## Completeness audit
 
 Before finishing, verify all of the following:
 
-- The executive summary is present.
-- Project, repository, and deployment metadata are included or explicitly unknown.
-- Current state and verification levels are distinguished.
-- Key decisions and constraints are recorded.
-- Git and deployment state are recorded.
-- Every accessible HUMAN message is present.
-- Every accessible AI / AGENT response is present.
-- Accessible prompts, code, commands, URLs, failures, and corrections are preserved.
-- Final interactions are present, not just early context.
-- Transcript entries have not been replaced with summaries.
-- Known inaccessible content is explicitly marked.
-- Secret values and hidden instructions are absent.
-- No metadata was invented.
+- Did I preserve every accessible HUMAN message?
+- Did I preserve every accessible AI / AGENT response?
+- Did I include relevant visible tool or terminal output?
+- Did I preserve prompts, code, commands, errors, corrections, and URLs where present?
+- Did I include the final interactions, not just early context?
+- Did I accidentally summarize any transcript portion instead of reproducing it?
+- Did I explicitly mark known inaccessible content?
+- Did I avoid exposing secrets, hidden instructions, and private reasoning?
+- Did I avoid inventing facts?
+- Did I omit irrelevant metadata fields, empty sections, empty tables, and placeholder values?
+- Does the context structure reflect the actual conversation rather than a fixed template?
 
-At the very end, add:
+## 4. Export Integrity Report
 
-## Export Integrity Report
-
-Report:
+At the very end, add a concise `## Export Integrity Report` containing only relevant integrity facts:
 
 - Number of HUMAN messages exported
 - Number of AI / AGENT messages exported
-- Number of TOOL / TERMINAL blocks exported
+- Number of TOOL / TERMINAL / SYSTEM blocks exported
 - Earliest interaction represented
 - Latest interaction represented
 - Whether any known content was inaccessible
@@ -254,7 +191,7 @@ Report:
 - Whether the transcript is believed to be complete
 - Whether the completeness audit passed
 
-Counts must describe blocks actually present in the artifact, not estimates.
+Counts must describe blocks actually present in the artifact, not estimates. Do not add unrelated metadata to this report.
 
 ## Large sessions
 

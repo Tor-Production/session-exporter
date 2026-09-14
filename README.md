@@ -2,7 +2,7 @@
 
 ![Session Exporter logo](plugins/session-exporter/assets/logo.svg)
 
-Session Exporter is a skills-only plugin by **Tor Production**. It creates a faithful Markdown handoff of the current ChatGPT or Codex conversation, including accessible messages, visible operational history, repository state, decisions, commands, failures, and an integrity report.
+Session Exporter is a skills-only plugin by **Tor Production**. It creates a faithful, adaptive Markdown handoff of the current ChatGPT or Codex conversation, including accessible messages, visible operational history, decisions, commands, failures, and an integrity report. Repository, deployment, research, writing, or other context appears only when it is actually relevant to the session.
 
 It has no MCP server, account connection, analytics, or external data destination. The generated export stays in the user's current environment unless the user explicitly sends it elsewhere.
 
@@ -31,7 +31,7 @@ Or ask naturally:
 Export the complete current session to session_export.md for handoff.
 ```
 
-The default artifact is `session_export.md`. The user can choose another filename or path. The export includes a complete accessible transcript and clearly marks anything the current agent cannot retrieve.
+The default artifact is `session_export.md`. The user can choose another filename or path. The export includes a complete accessible transcript and clearly marks anything the current agent cannot retrieve. It omits irrelevant fields instead of filling a generic metadata form with `Unknown` values.
 
 ## Privacy by design
 

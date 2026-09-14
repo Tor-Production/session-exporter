@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "session-exporter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Export the complete accessible current conversation and workspace state to a structured Markdown handoff.",
   "author": {
     "name": "Tor Production",

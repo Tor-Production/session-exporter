@@ -14,7 +14,7 @@ The `session-exporter` skill activates, reads its export specification, retrieve
 
 **Expected result shape**
 
-`session_export.md` contains all eleven required sections, a complete accessible transcript, and an Export Integrity Report with exact HUMAN, AI / AGENT, and TOOL / TERMINAL block counts.
+`session_export.md` contains the four required high-level parts, a complete accessible transcript, and an Export Integrity Report with exact HUMAN, AI / AGENT, and TOOL / TERMINAL block counts. Optional sections appear only when evidence from the session makes them useful.
 
 ## Positive 2 — non-repository chat
 
@@ -24,11 +24,11 @@ The `session-exporter` skill activates, reads its export specification, retrieve
 
 **Expected behavior**
 
-The skill exports the full accessible chat and writes `Unknown / not established in this session` for repository, branch, deployment, and similar fields. It does not invent a project or run unnecessary Git commands.
+The skill exports the full accessible chat without creating repository, branch, deployment, runtime, or similar technical fields. Its Session Context stays compact and includes only established, useful facts. It does not invent a project or run unnecessary Git commands.
 
 **Expected result shape**
 
-A valid Markdown export with unknown metadata explicitly marked and no fabricated repository state.
+A valid Markdown export with no irrelevant metadata headings, tables, or placeholder values and no fabricated repository state.
 
 ## Positive 3 — inaccessible older range
 

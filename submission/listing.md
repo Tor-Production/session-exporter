@@ -7,7 +7,7 @@
 - Technical ID: `session-exporter`
 - Publisher: Tor Production
 - Category: Productivity
-- Version: 0.1.0
+- Version: 0.1.1
 - Authentication: None
 - Remote MCP server: None
 - External data destination: None
@@ -20,7 +20,7 @@ Short description:
 
 Long description:
 
-> Create a faithful, chronological Markdown export of the accessible current conversation, workspace metadata, decisions, commands, and end state for handoff or audit. Session Exporter marks inaccessible history, redacts secret values, and includes an integrity report. It is a skills-only plugin with no server, sign-in, analytics, or external data transfer.
+> Create a faithful, chronological Markdown export of the accessible current conversation, decisions, commands, and end state for handoff or audit. Session Exporter adapts context to the actual session, omits irrelevant metadata, marks inaccessible history, redacts secret values, and includes an integrity report. It is a skills-only plugin with no server, sign-in, analytics, or external data transfer.
 
 ## Public URLs
 
