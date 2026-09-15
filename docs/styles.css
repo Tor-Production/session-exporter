@@ -204,6 +204,27 @@ h3 {
   padding: clamp(1.4rem, 4vw, 3rem);
 }
 
+.content-panel + .content-panel {
+  margin-top: 1.5rem;
+}
+
+.content-panel h2:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.content-panel h3 {
+  margin-top: 2.25rem;
+}
+
+.steps {
+  margin: 1.35rem 0;
+  padding-left: 1.4rem;
+}
+
+.steps li {
+  padding-left: 0.35rem;
+}
+
 .status {
   display: inline-flex;
   align-items: center;

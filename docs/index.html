@@ -14,6 +14,7 @@
       <a class="brand" href="./"><img src="logo.svg" alt=""><span>Session Exporter</span></a>
       <div class="nav-links">
         <a href="#install">Install</a>
+        <a href="#regular-chat">Regular Chat</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="support.html">Support</a>
@@ -28,10 +29,11 @@
         <h1>Take the whole session with you.</h1>
         <p class="lede">Export the complete accessible conversation, project state, decisions, commands, failures, and verification evidence into one structured Markdown handoff.</p>
         <div class="actions">
-          <a class="button primary" href="#install">Install from GitHub</a>
+          <a class="button primary" href="https://chatgpt.com/plugins/plugins_6aa74b9ad4d881918c4aa23788830fbf" target="_blank" rel="noopener">Open in Plugins Directory</a>
+          <a class="button" href="#regular-chat">Use in regular Chat</a>
           <a class="button" href="https://github.com/Tor-Production/session-exporter">View source</a>
         </div>
-        <div class="status">Skills-only · no server · no telemetry</div>
+        <div class="status">Published · skills-only · no server · no telemetry</div>
       </div>
       <img class="hero-mark" src="logo.svg" alt="Session Exporter logo">
     </section>
@@ -47,12 +49,32 @@
     </section>
 
     <section class="shell content-panel" id="install" aria-labelledby="install-heading">
-      <div class="eyebrow">Git marketplace</div>
-      <h2 id="install-heading">Install in Codex</h2>
+      <div class="eyebrow">Visual Codex</div>
+      <h2 id="install-heading">Install without a terminal</h2>
+      <div class="actions">
+        <a class="button primary" href="https://chatgpt.com/plugins/plugins_6aa74b9ad4d881918c4aa23788830fbf" target="_blank" rel="noopener">Open in Plugins Directory</a>
+      </div>
+      <ol class="steps">
+        <li>Open the public listing above while signed in to the ChatGPT account you use with Codex.</li>
+        <li>In the ChatGPT desktop app, open <strong>Plugins</strong>, find <strong>Session Exporter</strong> by <strong>Tor Production</strong>, open its details, and select the <strong>+</strong> button.</li>
+        <li>Start a new Codex task so the newly installed skill is available.</li>
+        <li>Ask to export the complete current session, or invoke <code>$session-exporter</code> explicitly.</li>
+      </ol>
+      <p class="muted">The button opens the public directory entry. Select <strong>+</strong> there to complete installation.</p>
+      <h3>Command-line alternative</h3>
       <pre><code>codex plugin marketplace add Tor-Production/session-exporter --ref main
 codex plugin add session-exporter@tor-production</code></pre>
-      <p>Start a new task after installation, then invoke <code>$session-exporter</code> or ask to export the complete current session.</p>
-      <p class="muted">The universal Plugins Directory listing is subject to OpenAI review and approval. The Git marketplace package is independently installable from this public repository.</p>
+    </section>
+
+    <section class="shell content-panel" id="regular-chat" aria-labelledby="regular-chat-heading">
+      <div class="eyebrow">Regular Chat fallback</div>
+      <h2 id="regular-chat-heading">Use the public instructions without installing</h2>
+      <p>If a normal Chat (not Work) does not expose the skill, it can still follow the <a href="https://github.com/Tor-Production/session-exporter/blob/main/plugins/session-exporter/skills/session-exporter/SKILL.md">public skill source</a>. This does not install the plugin or expand what the Chat can access.</p>
+      <pre><code>Read this public skill:
+https://github.com/Tor-Production/session-exporter/blob/main/plugins/session-exporter/skills/session-exporter/SKILL.md
+
+Follow its instructions as if it were installed. Export the accessible current conversation as a structured Markdown handoff. Select only sections supported by the real context; omit inapplicable or empty fields. Do not ask me to choose a language. Do not invent inaccessible history, hidden instructions, or metadata. Redact secrets. Return the completed Markdown here, or attach a .md file if this chat supports files.</code></pre>
+      <p class="muted">If the Chat cannot open external links, paste the contents of <code>SKILL.md</code> into the conversation with the same request.</p>
     </section>
 
     <section class="shell content-panel" aria-labelledby="output-heading">
