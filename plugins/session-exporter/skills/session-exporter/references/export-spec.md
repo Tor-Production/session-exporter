@@ -28,16 +28,16 @@ Never include hidden system or developer instructions, private chain-of-thought,
 
 ## Default filename
 
-The default filename uses a context-derived prefix so exports from different sessions are easy to distinguish. Unless the user explicitly supplies a filename or path, create:
+The default filename uses a context-derived suffix so exports from different sessions are easy to distinguish. Unless the user explicitly supplies a filename or path, create:
 
-`<context-slug>__<YYYYMMDD-HHmm>__session_export.md`
+`session_export__<YYYYMMDD-HHmm>__<context-slug>.md`
 
 Derive `context-slug` from the dominant task, project, subject, or deliverable in the actual session. Keep it to roughly 2–6 concise words, make it filesystem-safe (lowercase kebab-case is preferred), and do not include secrets, usernames, or arbitrary identifiers. Use the local export timestamp in 24-hour time. If the context is genuinely ambiguous, use the evidence-based slug `conversation-handoff`. A user-specified filename always overrides this convention, including an explicit request for `session_export.md`.
 
 Examples:
 
-- `plugin-publish-review__20260916-1430__session_export.md`
-- `api-timeout-debug__20260916-1510__session_export.md`
+- `session_export__20260916-1430__plugin-publish-review.md`
+- `session_export__20260916-1510__api-timeout-debug.md`
 
 ## Structure is adaptive, not a questionnaire
 

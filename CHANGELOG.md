@@ -2,7 +2,7 @@
 
 ## 0.1.2 - 2026-09-16
 
-- Give generated exports a short context-derived filename prefix and local timestamp.
+- Give generated exports a stable `session_export` base, local timestamp, and short context-derived filename suffix.
 - Keep explicit user-provided filenames and paths authoritative.
 - Update public listing materials, website copy, and review cases for the new naming convention.
 
