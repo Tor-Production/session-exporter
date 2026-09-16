@@ -6,6 +6,7 @@ from __future__ import annotations
 import re
 import sys
 import json
+import struct
 from pathlib import Path
 from typing import Any
 
@@ -127,7 +128,7 @@ def main() -> int:
     for path in (skill_path, reference_path, agent_path):
         require(path.is_file(), f"Missing skill file: {path.relative_to(ROOT)}", errors)
 
-    text_files = [path for path in ROOT.rglob("*") if path.is_file() and path.suffix.lower() in {".md", ".json", ".yaml", ".yml", ".html", ".css", ".py", ".svg"}]
+    text_files = [path for path in ROOT.rglob("*") if path.is_file() and path.suffix.lower() in {".md", ".json", ".yaml", ".yml", ".html", ".css", ".py", ".svg", ".xml", ".txt"}]
     unfinished_marker = "[" + "TODO:"
     for path in text_files:
         text = path.read_text(encoding="utf-8")
@@ -165,6 +166,10 @@ def main() -> int:
         "docs/privacy.html",
         "docs/terms.html",
         "docs/support.html",
+        "docs/sitemap.xml",
+        "docs/robots.txt",
+        "docs/social-card.svg",
+        "docs/social-card.png",
         "submission/listing.md",
         "submission/test-cases.md",
         "submission/release-notes.md",
@@ -172,6 +177,44 @@ def main() -> int:
         "plugins/session-exporter/assets/logo.png",
     ):
         require((ROOT / relative).is_file(), f"Missing required file: {relative}", errors)
+
+    seo_pages = {
+        "docs/index.html": "https://tor-production.github.io/session-exporter/",
+        "docs/privacy.html": "https://tor-production.github.io/session-exporter/privacy.html",
+        "docs/terms.html": "https://tor-production.github.io/session-exporter/terms.html",
+        "docs/support.html": "https://tor-production.github.io/session-exporter/support.html",
+    }
+    for relative, canonical_url in seo_pages.items():
+        page_path = ROOT / relative
+        if not page_path.is_file():
+            continue
+        page_text = page_path.read_text(encoding="utf-8")
+        canonical_match = re.search(r'<link\s+rel="canonical"\s+href="([^"]+)"', page_text, re.IGNORECASE)
+        og_url_match = re.search(r'<meta\s+property="og:url"\s+content="([^"]+)"', page_text, re.IGNORECASE)
+        require(canonical_match is not None and canonical_match.group(1) == canonical_url, f"{relative}: canonical URL is missing or incorrect", errors)
+        require(og_url_match is not None and og_url_match.group(1) == canonical_url, f"{relative}: og:url is missing or incorrect", errors)
+        require('property="og:image"' in page_text and "https://tor-production.github.io/session-exporter/social-card.png" in page_text, f"{relative}: og:image is missing or incorrect", errors)
+        require('name="twitter:card" content="summary_large_image"' in page_text, f"{relative}: Twitter summary card metadata is missing", errors)
+
+    sitemap_path = ROOT / "docs/sitemap.xml"
+    if sitemap_path.is_file():
+        sitemap_text = sitemap_path.read_text(encoding="utf-8")
+        for canonical_url in seo_pages.values():
+            require(f"<loc>{canonical_url}</loc>" in sitemap_text, f"sitemap.xml: missing {canonical_url}", errors)
+
+    robots_path = ROOT / "docs/robots.txt"
+    if robots_path.is_file():
+        robots_text = robots_path.read_text(encoding="utf-8")
+        require("User-agent: *" in robots_text and "Allow: /" in robots_text, "robots.txt: crawling rules are missing", errors)
+        require("Sitemap: https://tor-production.github.io/session-exporter/sitemap.xml" in robots_text, "robots.txt: sitemap directive is missing", errors)
+
+    social_card_path = ROOT / "docs/social-card.png"
+    if social_card_path.is_file():
+        png_data = social_card_path.read_bytes()
+        require(png_data.startswith(b"\x89PNG\r\n\x1a\n"), "social-card.png: invalid PNG signature", errors)
+        if len(png_data) >= 24 and png_data.startswith(b"\x89PNG\r\n\x1a\n"):
+            width, height = struct.unpack(">II", png_data[16:24])
+            require((width, height) == (1200, 627), "social-card.png: expected dimensions are 1200x627", errors)
 
     if errors:
         print("Validation failed:")

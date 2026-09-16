@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tor-production.github.io/session-exporter/sitemap.xml
