@@ -36,7 +36,7 @@ Or ask naturally:
 
     Export the complete current session to a context-named Markdown file for handoff.
 
-Unless the user chooses another filename or path, the artifact uses a short context prefix and timestamp, for example `session-exporter-plugin__20260916-1430__session_export.md`. The export includes a complete accessible transcript and clearly marks anything the current agent cannot retrieve. It omits irrelevant fields instead of filling a generic metadata form with `Unknown` values.
+Unless the user chooses another filename or path, the artifact uses a short context prefix and timestamp, for example `plugin-publish-review__20260916-1430__session_export.md`. The export includes a complete accessible transcript and clearly marks anything the current agent cannot retrieve. It omits irrelevant fields instead of filling a generic metadata form with `Unknown` values.
 
 ## Regular Chat fallback (not Work)
 

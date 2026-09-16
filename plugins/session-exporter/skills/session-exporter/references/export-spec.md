@@ -36,8 +36,8 @@ Derive `context-slug` from the dominant task, project, subject, or deliverable i
 
 Examples:
 
-- `session-exporter-plugin__20260916-1430__session_export.md`
-- `fixedupdate-optimization__20260916-1510__session_export.md`
+- `plugin-publish-review__20260916-1430__session_export.md`
+- `api-timeout-debug__20260916-1510__session_export.md`
 
 ## Structure is adaptive, not a questionnaire
 

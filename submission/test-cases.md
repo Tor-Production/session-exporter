@@ -14,7 +14,7 @@ The `session-exporter` skill activates, reads its export specification, retrieve
 
 **Expected result shape**
 
-The generated filename has a short context-derived prefix and local timestamp, for example `session-exporter-plugin__20260916-1430__session_export.md`. It contains the four required high-level parts, a complete accessible transcript, and an Export Integrity Report with exact HUMAN, AI / AGENT, and TOOL / TERMINAL block counts. Optional sections appear only when evidence from the session makes them useful.
+The generated filename has a short context-derived prefix and local timestamp, for example `plugin-publish-review__20260916-1430__session_export.md`. It contains the four required high-level parts, a complete accessible transcript, and an Export Integrity Report with exact HUMAN, AI / AGENT, and TOOL / TERMINAL block counts. Optional sections appear only when evidence from the session makes them useful.
 
 ## Positive 2 — non-repository chat
 
