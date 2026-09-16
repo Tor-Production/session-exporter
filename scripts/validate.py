@@ -144,6 +144,7 @@ def main() -> int:
         reference_text = reference_path.read_text(encoding="utf-8")
         for phrase in (
             "The export has four required high-level parts:",
+            "The default filename uses a context-derived prefix",
             "Omit irrelevant information entirely.",
             "Do not use placeholder metadata",
             "Never pause solely to ask the user to choose an export language.",

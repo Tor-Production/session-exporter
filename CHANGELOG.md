@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 - 2026-09-16
+
+- Give generated exports a short context-derived filename prefix and local timestamp.
+- Keep explicit user-provided filenames and paths authoritative.
+- Update public listing materials, website copy, and review cases for the new naming convention.
+
 ## 0.1.1 - 2026-09-14
 
 - Make the export structure adaptive to the actual session.

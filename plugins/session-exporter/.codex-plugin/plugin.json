@@ -1,6 +1,6 @@
 {
   "name": "session-exporter",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Export the complete accessible current conversation and workspace state to a structured Markdown handoff.",
   "author": {
     "name": "Tor Production",
@@ -32,7 +32,7 @@
     "privacyPolicyURL": "https://tor-production.github.io/session-exporter/privacy.html",
     "termsOfServiceURL": "https://tor-production.github.io/session-exporter/terms.html",
     "defaultPrompt": [
-      "Export this entire conversation to session_export.md.",
+      "Export this entire conversation to a context-named Markdown file.",
       "Create a complete Markdown handoff for this task.",
       "Save this session with Git state, decisions, and every accessible message."
     ],

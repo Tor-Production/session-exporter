@@ -7,7 +7,7 @@
 - Technical ID: `session-exporter`
 - Publisher: Tor Production
 - Category: Productivity
-- Version: 0.1.1
+- Version: 0.1.2
 - Authentication: None
 - Remote MCP server: None
 - External data destination: None
@@ -39,7 +39,7 @@ Long description:
 
 ## Starter prompts
 
-1. Export this entire conversation to `session_export.md`.
+1. Export this entire conversation to a context-named Markdown file.
 2. Create a complete Markdown handoff for this task.
 3. Save this session with Git state, decisions, and every accessible message.
 
